@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #050505;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The main scrolling container */
+.scroll-container {
+  position: relative;
+}
+
+/* 
+  The sticky wrapper that holds the canvas.
+  Setting it to sticky with top 0 means it sticks the moment it's scrolled into view,
+  which here is immediately since it's the first element.
+*/
+.canvas-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* Keep behind text */
+}
+
+#animation-canvas {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  /* Darken the initial frame so the white text pops */
+  filter: brightness(0.6);
+  transition: filter 0.5s ease;
+}
+
+/* When scrolling starts, we can remove the darkness via JS optionally */
+.scrolling #animation-canvas {
+  filter: brightness(1);
+}
+
+/* Shared styling for intro and outro sections */
+.content-section {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Add a dark gradient to ensure text readability over the video */
+  background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Overriding typography for the brand */
+.brand-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Intro specific styles */
+.intro-section {
+  /* No margin top since it should sit exactly on top of the first frozen frame */
+  margin-top: -100vh; /* Pull it up to lay strictly over the canvas-wrapper */
+}
+
+.scroll-prompt {
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.6;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+.mouse-icon {
+  width: 1px;
+  height: 40px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 0.8; transform: translateY(5px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
+/* The blank scroll space where the video just plays */
+.scroll-space {
+  height: 400vh; /* 4 extra screen heights to scroll through the video */
+  pointer-events: none;
+}
+
+/* Outro Section specific styling */
+.outro-section {
+  background: radial-gradient(circle, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 80%);
+  opacity: 0; /* Hidden initially, controlled by JS or pure scroll position */
+  /* We can let JS fade it in, or just let it naturally scroll into view 
+     Since it is at the bottom of the container, it will scroll up over the canvas organically. */
+}
+
+/* ==================================
+   Side Scroll Indicators (Fixed)
+===================================== */
+.indicator-wrapper {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40vh;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.indicator-wrapper.left {
+  left: 2rem;
+}
+
+.indicator-wrapper.right {
+  right: 2rem;
+}
+
+/* The faint track for the progress */
+.indicator-line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* The solid line that scales up */
+.indicator-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* We will modify this height via JS */
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+  transition: height 0.1s linear;
+}
+
+/* ==================================
+   Navigation Bar
+===================================== */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+}
+
+.nav-brand .nav-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.5;
+}

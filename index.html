@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edges Catering | Coming Soon</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Transparent Navigation Bar -->
+    <nav class="main-nav">
+      <div class="nav-brand">
+        <img src="/logo-white.png" alt="Edges Catering Logo" class="nav-logo" />
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Side Scroll Indicators -->
+    <div class="indicator-wrapper left">
+      <div class="indicator-line"><div class="indicator-progress"></div></div>
+    </div>
+    <div class="indicator-wrapper right">
+      <div class="indicator-line"><div class="indicator-progress"></div></div>
+    </div>
+
+    <!-- The main scrolling container -->
+    <div class="scroll-container">
+      
+      <!-- The sticky wrapper that holds the canvas -->
+      <div class="canvas-wrapper">
+        <canvas id="animation-canvas"></canvas>
+      </div>
+
+      <!-- Intro Title Section -->
+      <section class="content-section intro-section">
+        <h1 class="brand-title">Edges Catering</h1>
+        <p class="subtitle">An exquisite culinary experience.</p>
+        <div class="scroll-prompt">
+          <span>Scroll to uncover</span>
+          <div class="mouse-icon"></div>
+        </div>
+      </section>
+
+      <!-- This div simply adds height to the page so you can scroll while the video plays -->
+      <div class="scroll-space"></div>
+
+      <!-- Outro Section (Coming Soon) -->
+      <section class="content-section outro-section">
+        <h1 class="brand-title">Edges Catering</h1>
+        <p class="subtitle">Website Coming Soon</p>
+      </section>
+
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
