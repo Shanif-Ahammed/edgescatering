@@ -208,3 +208,13 @@ body, html {
 .nav-links a:hover {
   opacity: 0.5;
 }
+
+/* ==================================
+   Hero Logo (Intro/Outro)
+===================================== */
+.hero-logo {
+  height: 100px;
+  width: auto;
+  margin-bottom: 2rem;
+  object-fit: contain;
+}
